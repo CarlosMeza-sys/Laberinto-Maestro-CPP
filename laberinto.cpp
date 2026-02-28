@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 void generarLaberinto(std::vector<std::vector<char>>& laberinto, int filaActual, int columnaActual, int alto, int ancho) {
     // La celda actual se marca en camino
@@ -46,19 +47,30 @@ int main(int argc, char* argv[]) {
     // Imprimir para confirmar datos correctos
     std::cout << "Matriz de " <<ancho << " x " << alto << std::endl;
 
-    // Creación de la matriz dinámica.
+    // Creación de la matriz dinámica
     std::vector<std::vector<char>> laberinto(alto, std::vector<char>(ancho, '#'));
+
+    // Inicio de la medición del tiempo
+    auto inicio = std::chrono::high_resolution_clock::now();
 
     generarLaberinto(laberinto, 1, 1, alto, ancho);
     laberinto[1][0] = '*';
     laberinto[alto - 2][ancho - 1] = '*';
 
-    // Impresión de la matriz dinámica.
+    // Fin de la medición del tiempo
+    auto fin = std::chrono::high_resolution_clock::now();
+    // Calcular y guardar el tiempo de generación del laberinto
+    std::chrono::duration<double, std::milli> tiempo_generacion_ms = fin - inicio;
+
+    // Impresión de la matriz dinámica
     for (int fila = 0; fila < alto; fila++) {
         for (int columna = 0; columna < ancho; columna++) {
             std::cout << laberinto[fila][columna];
         }
         std::cout<<std::endl;
     }
+    // Impresión del resultado del cronómetro
+    std::cout << "Tiempo de generacion: " << tiempo_generacion_ms.count() << " ms\n";
+
     return 0;
 }
