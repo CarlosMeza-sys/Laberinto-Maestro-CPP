@@ -81,9 +81,23 @@ int main(int argc, char* argv[]) {
         std::cerr << "Uso correcto: ./laberinto <ancho> <alto>" << std::endl;
         return 1;
     }
-    // Conversión de tipo de datos --- "IMPLEMENTAR ALGUNA LOGICA DE VALIDACION DE NUMEROS ENTEROS"
-    int ancho = std::stoi(argv[1]);
-    int alto = std::stoi(argv[2]);
+    int ancho = 0;
+    int alto = 0;
+
+    try {
+        // Conversión de tipos de datos
+        ancho = std::stoi(argv[1]);
+        alto = std::stoi(argv[2]);
+        // Validación de tamaño del laberinto
+        if (ancho < 5 || alto < 5) {
+            std::cerr << "Error: El laberinto debe ser de al menos 5x5 para generarse correctamente" << std::endl;
+            return 1;
+        }
+    // Bloque de seguridad: Captura errores de conversión (como ingresar letras)
+    } catch (const std::exception& e) {
+        std::cerr << "Error: Los parametros de ancho y alto deben ser numeros enteros validos" << std::endl;
+        return 1;
+    }
     // Imprimir para confirmar datos correctos
     std::cout << "Matriz de " <<ancho << " x " << alto << std::endl;
 
