@@ -98,6 +98,13 @@ int main(int argc, char* argv[]) {
         std::cerr << "Error: Los parametros de ancho y alto deben ser numeros enteros validos" << std::endl;
         return 1;
     }
+    // Normalización de datos
+    if (ancho % 2 == 0) {
+        ancho++;
+    }
+    if (alto % 2 == 0) {
+        alto++;
+    }
     // Imprimir para confirmar datos correctos
     std::cout << "Matriz de " <<ancho << " x " << alto << std::endl;
 
