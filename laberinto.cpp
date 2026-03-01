@@ -5,6 +5,15 @@
 #include <random>
 #include <chrono>
 
+// Imprimir la matriz
+void imprimirLaberinto(const std::vector<std::vector<char>>& laberinto, int alto, int ancho) {
+    for (int fila = 0; fila < alto; fila++) {
+        for (int columna = 0; columna < ancho; columna++) {
+            std::cout << laberinto[fila][columna];
+        } std::cout << std::endl;
+    }
+}
+
 // Función para crear laberinto
 void generarLaberinto(std::vector<std::vector<char>>& laberinto, int filaActual, int columnaActual, int alto, int ancho) {
     // La celda actual se marca en camino
@@ -94,15 +103,10 @@ int main(int argc, char* argv[]) {
     // Calcular y guardar el tiempo de generación del laberinto
     std::chrono::duration<double, std::milli> tiempo_generacion_ms = finGeneracion - inicioGeneracion;
 
-    // Impresión de la matriz dinámica
-    for (int fila = 0; fila < alto; fila++) {
-        for (int columna = 0; columna < ancho; columna++) {
-            std::cout << laberinto[fila][columna];
-        }
-        std::cout<<std::endl;
-    }
+    // Impresión del laberinto hecho
+    imprimirLaberinto(laberinto, alto, ancho);
     // Reporte del tiempo de generación del laberinto
-    std::cout << "Tiempo de generacion: " << tiempo_generacion_ms.count() << " ms\n";
+    std::cout << "Tiempo de generacion: " << tiempo_generacion_ms.count() << " ms\n\n";
 
     // Definición de la entrada y salida del algoritmo solucionadaor del laberinto
     int inicioFila = 1;
@@ -120,13 +124,9 @@ int main(int argc, char* argv[]) {
     auto finResolucion = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> tiempo_resolucion_ms = finResolucion - inicioResolucion;
 
-    //Impresion del laberinto ya resuelto
-    for (int fila = 0; fila < alto; fila++) {
-        for (int columna = 0; columna < ancho; columna++) {
-            std::cout << laberinto[fila][columna];
-        }
-        std::cout << std::endl;
-    }
+    //Impresión del laberinto ya resuelto
+    imprimirLaberinto(laberinto, alto, ancho);
+
     // Reporte final del estado de resolución
     if (resuelto) {
         std::cout << "Estado: RESUELTO\n";
