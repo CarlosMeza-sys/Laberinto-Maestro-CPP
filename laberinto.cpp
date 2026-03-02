@@ -57,7 +57,7 @@ bool resolverLaberinto(std::vector<std::vector<char>>& laberinto, int filaActual
         columnaActual < 0 || columnaActual >= (int)laberinto[0].size()||
         laberinto[filaActual][columnaActual] != '*') {
         return false;
-        }
+    }
     
     // Camino potencial
     laberinto[filaActual][columnaActual] = 'O';
@@ -67,7 +67,7 @@ bool resolverLaberinto(std::vector<std::vector<char>>& laberinto, int filaActual
         resolverLaberinto(laberinto, filaActual, columnaActual - 1, destinoFila, destinoColumna) ||
         resolverLaberinto(laberinto, filaActual, columnaActual + 1, destinoFila, destinoColumna)) {
         return true;
-        }
+    }
     
     // Backtracking - para determinar que no hay salida en este punto
     laberinto[filaActual][columnaActual] = ' ';
