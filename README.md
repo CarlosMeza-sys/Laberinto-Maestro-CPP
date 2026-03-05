@@ -32,7 +32,35 @@ Durante el desarrollo, realicé pruebas de estrés para medir el rendimiento de 
 | 51 x 25 | ~4.59 ms | ~0.06 ms | Éxito |
 | 51 x 51 | - | - | Fallo (Exit Code 127) |
 
-**Conclusiones:**
+## 4. Instrucciones de Ejecución
+Este programa está diseñado para ejecutarse nativamente desde la terminal, utilizando **argumentos de línea de comandos** (parámetros que le entregamos al programa en el momento exacto de su arranque para definir su comportamiento).
+
+### Requisitos Previos
+Asegúrate de tener un compilador de C++ instalado en tu sistema (como `g++`, estándar en entornos Linux y WSL).
+
+### Pasos para probar el código:
+
+**Paso 1: Compilación**
+Abre tu terminal, navega hasta el directorio donde se encuentra el archivo fuente y traduce el código a un archivo ejecutable utilizando el siguiente comando:
+```bash
+g++ laberinto.cpp -o laberinto
+```
+*(Este comando genera un nuevo archivo ejecutable llamado `laberinto` listo para ser utilizado).*
+
+**Paso 2: Ejecución**
+Para arrancar el programa, debes indicarle las dimensiones deseadas directamente en la terminal. Por reglas de diseño y para evitar errores estructurales, el tamaño mínimo permitido es de 5x5.
+**Sintaxis correcta:**
+```bash
+./laberinto <ancho> <alto>
+```
+**Ejemplo de uso:**
+Para generar y resolver automáticamente un laberinto de 21 columnas por 21 filas, ejecuta:
+```bash
+./laberinto 21 21
+```
+Si omites los parámetros o ingresas caracteres no válidos, el programa interceptará el error de forma segura y te mostrará las instrucciones de uso en pantalla sin colapsar.
+
+## 5. Conclusiones y Mejoras Futuras
 * **Velocidad de ejecución:** La resolución es exponencialmente más rápida que la generación. Esto ocurre porque el generador debe recorrer obligatoriamente cada espacio disponible del mapa, mientras que el solucionador se detiene de inmediato al encontrar la meta.
 * **El límite de la recursividad:** Al intentar generar un laberinto cuadrado grande (51x51), el programa colapsó. Descubrí que llamar a la función recursiva tantas veces seguidas crea un problema de memoria en el hardware (un desbordamiento de pila o *Stack Overflow*).
 
